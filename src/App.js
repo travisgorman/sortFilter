@@ -22,43 +22,43 @@ const App = React.createClass({
   }
 })
 
-// const Search = React.createClass({
-//   render() {
-//     return (  
-//       <form className="Search">
-//         <input type="text" placeholder="Search..." />
-//         <input type="submit" hidden />
-//         <div className="filter">          
-//           <input type="checkbox" />
-//           <p>Only Show Products in Stock</p>
-//         </div>
-//       </form>
-//     )
-//   }
-// })
+const Search = React.createClass({
+  render() {
+    return (  
+      <form className="Search">
+        <input type="text" placeholder="Search..." />
+        <input type="submit" hidden />
+        <div className="filter">          
+          <input type="checkbox" />
+          <p>Only Show Products in Stock</p>
+        </div>
+      </form>
+    )
+  }
+})
 
-// const Table = React.createClass({
-//   render() {
-//     const product = PRODUCTS.map( (product, i ) => {
-//       return (  
-//         <ProductItem 
-//           key={i} 
-//           category={product.category} 
-//           stocked={product.stocked} 
-//           price={product.price} 
-//           name={product.name} />
-//       )
-//     });
-//     return (  
-//       <div className="Table">
-//         <header><span>Name</span><span>Price</span></header>
-//         <ul className="category-rows">        
-//           {product}
-//         </ul>
-//       </div>
-//     )
-//   }
-// })
+const Table = React.createClass({
+  render() {
+    const product = PRODUCTS.map( (product, i ) => {
+      return (  
+        <ProductItem 
+          key={i} 
+          category={product.category} 
+          stocked={product.stocked} 
+          price={product.price} 
+          name={product.name} />
+      )
+    });
+    return (  
+      <div className="Table">
+        <header><span>Name</span><span>Price</span></header>
+        <ul className="category-rows">        
+          {product}
+        </ul>
+      </div>
+    )
+  }
+})
 
 // const ProductItem = React.createClass({
 //   render() {
