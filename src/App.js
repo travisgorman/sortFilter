@@ -60,18 +60,18 @@ const Table = React.createClass({
   }
 })
 
-// const ProductItem = React.createClass({
-//   render() {
-//     return (  
-//       <div className="ProductItem">
-//         <h4>{this.props.category}</h4>
-//         <h5>{this.props.name}</h5>
-//         <h5>{this.props.price}</h5>
-//         <h5>{this.props.stocked}</h5>
-//       </div>
-//     )
-//   }
-// })
+const ProductItem = React.createClass({
+  render() {
+    return (  
+      <div className="ProductItem">
+        <h4>{this.props.category}</h4>
+        <h5>{this.props.name}</h5>
+        <h5>{this.props.price}</h5>
+        <h5>{this.props.stocked}</h5>
+      </div>
+    )
+  }
+})
 
 
 export default App;
