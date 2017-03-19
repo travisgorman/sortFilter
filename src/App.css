@@ -1,13 +1,4 @@
-.App {
-  text-align: center;
+* {
+  border: 1px solid #eee;
 }
 
-form {
-  background: #E46361;
-}
-
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

@@ -1,77 +1,143 @@
 import React from 'react';
 import './App.css';
+import PRODUCTS from './data'
 
-var PRODUCTS = [
-  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+let PRODUCTS = [
+  {
+    category: 'Sporting Goods', 
+    price: '$49.99', 
+    stocked: true, 
+    name: 'Football',
+  },
+  {
+    category: 'Sporting Goods', 
+    price: '$9.99', 
+    stocked: true, 
+    name: 'Baseball',
+  },
+  {
+    category: 'Sporting Goods', 
+    price: '$29.99', 
+    stocked: false, 
+    name: 'Basketball',
+  },
+  {
+    category: 'Electronics', 
+    price: '$99.99', 
+    stocked: true, 
+    name: 'iPod Touch',
+  },
+  {
+    category: 'Electronics', 
+    price: '$399.99', 
+    stocked: false, 
+    name: 'iPhone 5',
+  },
+  {
+    category: 'Electronics', 
+    price: '$199.99', 
+    stocked: true, 
+    name: 'Nexus 7',
+  },
 ];
 
-
-const App = React.createClass({
+const FilterableProductTable = React.createClass({
+  propTypes: {
+    products: React.PropTypes.array,
+  },
   render() {
     return (  
-      <div className="App">
-         <Search />
-         <Table />
+      <div className="FilterableProductTable">
+        <SearchBar />
+        <ProductTable products={this.props.products} />
       </div>
-    )
+    );
   }
-})
-
-const Search = React.createClass({
+});
+// SearchBar
+const SearchBar = React.createClass({
   render() {
     return (  
-      <form className="Search">
+      <form className="SearchBar">
         <input type="text" placeholder="Search..." />
-        <input type="submit" hidden />
-        <div className="filter">          
+        <p>
           <input type="checkbox" />
-          <p>Only Show Products in Stock</p>
-        </div>
-      </form>
-    )
+            {' '}
+          Only show products in stock
+        </p>
+      </form> 
+    );
   }
-})
-
-const Table = React.createClass({
+});
+// ProductTable
+const ProductTable = React.createClass({
+  propTypes: {
+    products: React.PropTypes.array,
+  },
   render() {
-    const product = PRODUCTS.map( (product, i ) => {
-      return (  
-        <ProductItem 
-          key={i} 
-          category={product.category} 
-          stocked={product.stocked} 
-          price={product.price} 
-          name={product.name} />
-      )
+    const rows = [];
+    let lastCategory = null;
+    this.props.products.forEach((product) => {
+      if (product.category !== lastCategory) {
+        rows.push(  
+          <ProductCategoryRow 
+            category={product.category} 
+            key={product.category} />
+        );
+      }
+      rows.push(  
+        <ProductRow
+          product={product}
+          key={product.name} />  
+      );
+      lastCategory = product.category;
     });
     return (  
-      <div className="Table">
-        <header><span>Name</span><span>Price</span></header>
-        <ul className="category-rows">        
-          {product}
-        </ul>
-      </div>
-    )
+      <table className="ProductTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
+    );
   }
-})
-
-const ProductItem = React.createClass({
+});
+// ProductCategoryRow
+const ProductCategoryRow = React.createClass({
+  propTypes: {
+    category: React.PropTypes.string,
+  },
   render() {
     return (  
-      <div className="ProductItem">
-        <h4>{this.props.category}</h4>
-        <h5>{this.props.name}</h5>
-        <h5>{this.props.price}</h5>
-        <h5>{this.props.stocked}</h5>
-      </div>
-    )
+      <tr className="ProductCategoryRow">
+        <th colSpan="2" >{this.props.category}</th>
+      </tr>
+    );
   }
-})
+});
+// ProductRow
+const ProductRow = React.createClass({
+  propTypes: {
+    product: React.PropTypes.object,
+  },
+  render() {
+    let name = 
+      this.props.product.stocked ? this.props.product.name :
+        <span style={{color: 'red'}}>{this.props.product.name}</span>;
+    return (  
+      <div className="ProductRow">
+        <tr>
+          <td>{name}</td>
+          <td>{this.props.product.price}</td>
+        </tr>
+      </div>
+    );
+  }
+});
 
 
-export default App;
