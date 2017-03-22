@@ -1,4 +1,4 @@
-#Thinking in React
+# Thinking in React
 
 
 
@@ -12,7 +12,7 @@
 ___
 
 
-##Break UI into **component hierarchy**
+## Break UI into **component hierarchy**
 
 #### Single responsibility principal
 
@@ -39,7 +39,7 @@ These are the components in the mock. Create a Hierarchy structure. Components t
 ___
 
 
-##Build a **static version** in React
+## Build a **static version** in React
 
 Build components that 
 * re-use other components
@@ -54,9 +54,23 @@ Components will only have a `render()` since it is static.
 
 
 
+___
 
 
+## Identify the minimal complete representation of UI state
 
+Pieces of data in this app
+
+* list of products
+* filtered list of products
+* search input value
+* checkbox value
+
+Ask these 3 questions about each piece of data
+
+* Is it passed from a parent component as a prop?
+* Does it remain unchanged over time?
+* Can it be computed from other values?
 
 
 
