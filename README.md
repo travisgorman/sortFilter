@@ -72,6 +72,49 @@ Ask these 3 questions about each piece of data
 * Does it remain unchanged over time?
 * Can it be computed from other values?
 
+if yes, it doesn't need to be state.
+
+#### state for this app is
+* checkbox value
+* search input value
+
+___
+
+## Identify where state should live
+
+for each piece of state in the application:
+
+* identify every component that renders something based on that state
+* find a common owner component — a single component above all components needing that state
+* if you can't find a component that makes sense to own state, create one. 
+
+`ProductTable` renders something based on search value and checkbox value
+`SearchBar` needs to display search text and checkbox value
+
+so the common owner component is `FilterableProductTable` (App)
+
+
+
+
+___
+
+## Add inverse data flow
+
+
+
+
+
+___
+
+
+
+
+
+
+
+
+
+
 
 
 
