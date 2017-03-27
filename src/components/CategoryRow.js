@@ -12,4 +12,4 @@ const CategoryRow = React.createClass({
   }
 })
 
-export default ProductTable;
+export default CategoryRow;
