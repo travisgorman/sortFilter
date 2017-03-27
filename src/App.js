@@ -10,20 +10,21 @@ const App = React.createClass({
 			inStockOnly: false,
 		};
 	},
+
 	handleUserInput(filterText, inStockOnly) {
-		this.setState({
-			filterText,
-			inStockOnly,
-		});
+		this.setState({filterText, inStockOnly});
+		console.log('filterText:',filterText);
+		console.log('inStockOnly:', inStockOnly);
 	},
+
   render() {
     return (
       <div>
-        <Search 
+        <SearchBar 
         	filterText={this.state.filterText} 
         	inStockOnly={this.state.inStockOnly}
         	onUserInput={this.handleUserInput} />
-        <Table 
+        <ProductTable 
         	products={this.props.products}
         	filterText={this.state.filterText}
         	inStockOnly={this.state.inStockOnly} />
