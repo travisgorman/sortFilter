@@ -4,6 +4,11 @@ import SearchBar from './components/SearchBar'
 import ProductTable from './components/ProductTable'
 
 const App = React.createClass({
+
+	propTypes: {
+		product
+	}
+	
 	getInitialState() {
 		return {
 			filterText: '',
@@ -13,8 +18,6 @@ const App = React.createClass({
 
 	handleUserInput(filterText, inStockOnly) {
 		this.setState({filterText, inStockOnly});
-		console.log('filterText:',filterText);
-		console.log('inStockOnly:', inStockOnly);
 	},
 
   render() {

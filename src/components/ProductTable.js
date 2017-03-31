@@ -18,26 +18,37 @@ const ProductTable = React.createClass({
     //   } else rows.push(<ProductRow key={product.name} product={product}/>);
     // });
 
-    var rows = [];
-    
-    // a placeholder to see when the category has changed
-    var lastCategory = null;
-    
-    // Loop through and push components to the 'row' array
-    this.props.products.forEach(function(product) {
-      // for each product, check if the type-ahead search and the stocked condition match
-      if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
+    let rows = [];
+    let lastCategory = null;
+    this.props.products.forEach((product, key) => {
+      
+      if (product.name.indexOf(this.props.filterText) === -1 || 
+        (!product.stocked && this.props.inStockOnly)) {
         return;
       }
-      
-      // Check if the catefory has changed - only works if the data is sorted
       if (product.category !== lastCategory) {
-        rows.push(<CategoryRow category={product.category} key={product.category} />);
+        rows.push(<CategoryRow category={product.category} key={product.category}/>);
       }
-      rows.push(<ProductRow product={product} key={product.name} />);
-      lastCategory = product.category;
-      
-    }.bind(this)); // Binding the child component updates to the parent?????
+      rows.push(<ProductRow key={key} product={product}/>);
+    });
+
+//
+//
+
+    // var rows = [];    
+    // var lastCategory = null;
+    // this.props.products.forEach(function(product) {
+
+    //   if (product.name.indexOf(this.props.filterText) === -1 || 
+    //     (!product.stocked && this.props.inStockOnly)) {
+    //     return;
+    //   }      
+    //   if (product.category !== lastCategory) {
+    //     rows.push(<CategoryRow category={product.category} key={product.category} />);
+    //   }
+    //   rows.push(<ProductRow product={product} key={product.name} />);
+    //   lastCategory = product.category;      
+    // } .bind(this) );
 
     return (
       <table>
