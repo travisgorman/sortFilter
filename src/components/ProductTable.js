@@ -3,54 +3,25 @@ import CategoryRow from './CategoryRow';
 import ProductRow from './ProductRow';
 
 const ProductTable = React.createClass({
-  propTypes: {
-    products:    React.PropTypes.array,
-    inStockOnly: React.PropTypes.bool,
-    filterText:  React.PropTypes.string,
-  },
-  render(){
-
-    // let rows = [];
-    // let lastCategory = null;
-    // this.props.products.forEach((product, key) => {
-    //   if (product.category !== lastCategory) {
-    //     rows.push(<CategoryRow category={product.category} key={key}/>);
-    //   } else rows.push(<ProductRow key={product.name} product={product}/>);
-    // });
-
-    let rows = [];
-    let lastCategory = null;
-    this.props.products.forEach((product, key) => {
-      
-      if (product.name.indexOf(this.props.filterText) === -1 || 
-        (!product.stocked && this.props.inStockOnly)) {
-        return;
-      }
-      if (product.category !== lastCategory) {
-        rows.push(<CategoryRow category={product.category} key={product.category}/>);
-      }
-      rows.push(<ProductRow key={key} product={product}/>);
-    });
-
-//
-//
-
-    // var rows = [];    
-    // var lastCategory = null;
-    // this.props.products.forEach(function(product) {
-
-    //   if (product.name.indexOf(this.props.filterText) === -1 || 
-    //     (!product.stocked && this.props.inStockOnly)) {
-    //     return;
-    //   }      
-    //   if (product.category !== lastCategory) {
-    //     rows.push(<CategoryRow category={product.category} key={product.category} />);
-    //   }
-    //   rows.push(<ProductRow product={product} key={product.name} />);
-    //   lastCategory = product.category;      
-    // } .bind(this) );
-
-    return (
+  let rows = [];
+  let lastCategory = null;
+  this.props.products.forEach((product) => {
+    if (product.name.indexOf(this.props.filterText) === -1 ||
+      (!product.stocked && this.props.inStockOnly)) {
+      return;
+    }
+    if (product.category !== lastCategory) {
+      rows.push(  
+        <CategoryRow category={product.category} key={product.category} /> 
+      );
+    }
+      rows.push(  
+        <ProductRow product={product} key={product.name} />
+      );
+      lastCategory = product.category;
+  }.bind(this));
+  render() {
+    return (  
       <table>
         <thead>
           <tr>
@@ -58,7 +29,9 @@ const ProductTable = React.createClass({
             <th>Price</th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody>
+          {rows}
+        </tbody>
       </table>
     );
   }
