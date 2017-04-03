@@ -2,11 +2,11 @@ import React from 'react'
 
 const ProductRow = React.createClass({
   render() {
-  	let name = this.props.product.stocked ? 
-  		this.props.product.name : 
-  		<span style={{color: 'red'}}>
-  			{this.props.product.name}
-			</span>;
+  	let name = this.props.product
+      .stocked ? this.props.product.name :
+    		<span style={{color: 'red'}}>
+    			{this.props.product.name}
+  			</span>;
     return (
       <tr>
         <td>{name}</td>
