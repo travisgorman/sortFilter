@@ -5,16 +5,16 @@ import ProductTable from './components/ProductTable'
 
 const App = React.createClass({
 
-	propTypes: {
-		product
-	}
+	// propTypes: {
+	// 	product
+	// }
 	
-	getInitialState() {
-		return {
-			filterText: '',
-			inStockOnly: false,
-		};
-	},
+	// getInitialState() {
+	// 	return {
+	// 		filterText: '',
+	// 		inStockOnly: false,
+	// 	};
+	// },
 
 	handleUserInput(filterText, inStockOnly) {
 		this.setState({filterText, inStockOnly});
