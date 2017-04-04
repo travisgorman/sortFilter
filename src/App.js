@@ -9,12 +9,12 @@ const App = React.createClass({
 	// 	product
 	// }
 	
-	// getInitialState() {
-	// 	return {
-	// 		filterText: '',
-	// 		inStockOnly: false,
-	// 	};
-	// },
+	getInitialState() {
+		return {
+			filterText: '',
+			inStockOnly: false,
+		};
+	},
 
 	handleUserInput(filterText, inStockOnly) {
 		this.setState({filterText, inStockOnly});

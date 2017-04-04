@@ -3,24 +3,30 @@ import CategoryRow from './CategoryRow';
 import ProductRow from './ProductRow';
 
 const ProductTable = React.createClass({
-  let rows = [];
-  let lastCategory = null;
-  this.props.products.forEach((product) => {
+
+  render() {
+    let rows = [];
+    let lastCategory = null;
+    this.props.products.forEach((product) => {
     if (product.name.indexOf(this.props.filterText) === -1 ||
       (!product.stocked && this.props.inStockOnly)) {
-      return;
-    }
+        return;
+      }
     if (product.category !== lastCategory) {
       rows.push(  
-        <CategoryRow category={product.category} key={product.category} /> 
+        <CategoryRow 
+          category={product.category} 
+          key={product.category} /> 
       );
     }
       rows.push(  
-        <ProductRow product={product} key={product.name} />
+        <ProductRow 
+          product={product} 
+          key={product.name} />
       );
-      lastCategory = product.category;
-  }.bind(this));
-  render() {
+      lastCategory = product.category
+  });
+
     return (  
       <table>
         <thead>
