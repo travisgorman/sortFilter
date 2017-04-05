@@ -4,10 +4,6 @@ import SearchBar from './components/SearchBar'
 import ProductTable from './components/ProductTable'
 
 const App = React.createClass({
-
-	// propTypes: {
-	// 	product
-	// }
 	
 	getInitialState() {
 		return {
